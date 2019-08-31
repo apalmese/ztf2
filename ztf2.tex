@@ -11,7 +11,7 @@
 \usepackage{aas_macros}
 
 
-\title{LBL Peculiar-Velocity Program and ZTF2}
+\title{LBL Peculiar-Velocity Program: ZTF2 and LSST}
 \author{The Author}
 %\date{}							% Activate to display a given date or no date
 
@@ -82,6 +82,10 @@ the line of sight.
 The bias is a ``nuisance'' parameter, not present in the velocity power spectrum, which must marginalized out when inferring $\gamma$.
 The same field is responsible for both overdensities and velocities so when combined in a common analysis the sample variance limit is lowered.
 
+
+\section{Near- and Long-Term Projections}
+
+
 Peculiar velocity surveys have already been  used to measure
 the effective $fD$ in redshift bins  (referred to as $f\sigma_8$), though not to a level where  gravity models can be precisely distinguished.
  \cite{2017MNRAS.471..839A} use 6dFGS peculiar velocities using  Fundamental Plane distances of elliptical galaxies to estimate absolute magnitudes
@@ -104,7 +108,6 @@ SNe~Ia discovered by ASAS-SN, ATLAS, and ZTF \cite{2014ApJ...788...48S,2018PASP.
 %Measurement of the velocity field using LSST-discovered
 %SNe~Ia has been quantified by \cite{2011PhRvD..83d3004B,2017JCAP...01..060O}
 
-\section{Near- and Long-Term Projections}
 
 Two advances in the upcoming decade will make SN~Ia peculiar velocities more powerful.
 First, the precision of SN~Ia distances can be improved.  The commonly-used empirical 2-parameter spectral model yields  absolute magnitude
@@ -128,9 +131,51 @@ hundreds of thousands; over the course of 10-years, LSST will find $\sim150,000$
 
 
 
-Projected uncertainties in $\gamma$ based on the discoveries from the near-term ZTF2 and the long term LSST are shown in Figure~\ref{surface:fig}, details
-on the calculation can be found in \cite{2019BAAS...51c.140K}.
-ZTF2 has complete SN~Ia discovery out to $z=0.09$ 
+The primary  parameters that affect the precision obtained from a peculiar velocity survey are: solid angle $\Omega$, number density $n$, source intrinsic
+magnitude dispersion $\sigma_M$, and for a distance-limited survey the maximum distance $r_{\text{max}}$ (alternatively redshift $z_{\text{max}}$).
+The dependence is most simply discerned 
+in the  Fisher information matrix
+\begin{align}
+F_{ij} 
+%& = \frac{V}{2}\int \frac{d^3k}{(2\pi)^3} \text{Tr}\left[ C^{-1} \frac{\partial C}{\partial \lambda_i} C^{-1}
+%\frac{\partial C}{\partial \lambda_j} \right]\\
+& = \frac{\Omega}{8\pi^2} \int_{r_{\rm min}}^{r_{\rm max}}  \int_{k_{\rm min}}^{k_{\rm max}}  \int_{-1}^{1} r^2 k^2 \text{Tr}\left[ C^{-1} \frac{\partial C}{\partial \lambda_i} C^{-1}
+\frac{\partial C}{\partial \lambda_j} \right] d\mu\,dk\,dr
+\label{fisher:eqn}
+\end{align}
+where
+\begin{equation}
+C(k,\mu)  =
+  \begin{bmatrix}
+   P_{\delta \delta}(k,\mu) + \frac{1}{n} &
+   P_{v\delta}(k,\mu)  \\
+   P_{v\delta}(k,\mu)  &
+  P_{vv}(k,\mu) + \frac{\sigma^2}{n}
+   \end{bmatrix},
+\label{cov:eq}
+\end{equation}
+and $\sigma \approx (\frac{5}{\ln{10}} \frac{1+z}{z})^{-1} \sigma_M$.
+The dependences of $\gamma$ and other parameters enter through $fD$ in the relations $P_{vv}\propto (fD\mu)^2$, the SN~Ia host-galaxy count overdensity
+power spectrum $P_{\delta \delta }\propto (bD + fD\mu^2)^2$, and the galaxy-velocity cross-correlation $P_{vg}
+\propto  (bD + fD\mu^2)fD$.  Details
+on the assumptions made for the calculation can be found in \cite{2019BAAS...51c.140K}.
+
+ZTF2 and TAIPAN are near-term surveys that will measure peculiar velocities.  Both have roughly
+ $z_{\text{max}}=0.09$ and $\Omega = 2\pi$.
+Uncertainties in $\gamma$ for surveys with this depth and solid-angle coverage 
+are shown as a function of number of sources $N$ and $\sigma_M$ in Figure~\ref{surface:fig}. The positions of ZTF2 and TAIPAN are marked
+in the Figure, with the latter showing both  a conservative $\sigma_M=0.12$~mag and the other for an aggressive $\sigma_M=0.08$~mag.
+ZTF2 and TAIPAN lie in opposite ends of the diagram, there are small numbers of ZTF2 SNe with precise distances
+whereas there are many TAIPAN Fundamental Plane galaxies with imprecise distances. 
+Conservative ZTF2 and TAIPAN
+are projected to give similar precisions $\sigma_ \gamma = 0.054$, whereas  the lower intrinsic magnitude dispersion  gives
+$\sigma_ \gamma = 0.042$.  Being in different hemispheres, the two surveys
+complementarily survey different parts of sky, meaning that their two independent results can be
+combined  quadratically to produce a reduced joint uncertainty.  An important distinction between the surveys is
+that TAIPAN will observe almost all available Fundamental Plane galaxies in the volume, meaning that no additional observing can
+increase the number density $n$ to
+move the TAIPAN point further rightwards in the diagram.  On the other hand, the number density of supernova increases
+linearly with time, meaning that there is continued room for improvement with longer surveys.
 
 \begin{figure}
 \centering
@@ -138,6 +183,9 @@ ZTF2 has complete SN~Ia discovery out to $z=0.09$
 \caption{
 \label{surface:fig}}
 \end{figure}
+
+A long-term survey is LSST.  As a 10-year survey, it will produce a large number density.  The LSST WFD survey goes to a significantly
+fainter limiting magnitude extending the redshift range.
 
 %Given these  advances, supernovae discovered by wide-field searches in the next decade will 
 % be able to tightly constrain the growth of structure in the low-redshift Universe.
@@ -163,27 +211,7 @@ ZTF2 has complete SN~Ia discovery out to $z=0.09$
 %(there is an alternative approach using an estimator for the mean pairwise velocity
 %\cite{2011PhRvD..83d3004B}).
 %The ``cross-correlation'' analysis incorporates both galaxy overdensities and peculiar velocities.
-%The Fisher information matrix is
-%\begin{align}
-%F_{ij} 
-%%& = \frac{V}{2}\int \frac{d^3k}{(2\pi)^3} \text{Tr}\left[ C^{-1} \frac{\partial C}{\partial \lambda_i} C^{-1}
-%%\frac{\partial C}{\partial \lambda_j} \right]\\
-%& = \frac{\Omega}{8\pi^2} \int_{r_{\rm min}}^{r_{\rm max}}  \int_{k_{\rm min}}^{k_{\rm max}}  \int_{-1}^{1} r^2 k^2 \text{Tr}\left[ C^{-1} \frac{\partial C}{\partial \lambda_i} C^{-1}
-%\frac{\partial C}{\partial \lambda_j} \right] d\mu\,dk\,dr
-%\label{fisher:eqn}
-%\end{align}
-%where
-%\begin{equation}
-%C(k,\mu)  =
-%  \begin{bmatrix}
-%   P_{\delta \delta}(k,\mu) + \frac{1}{n} &
-%   P_{v\delta}(k,\mu)  \\
-%   P_{v\delta}(k,\mu)  &
-%  P_{vv}(k,\mu) + \frac{\sigma^2}{n}
-%   \end{bmatrix}
-%\label{cov:eq}
-%\end{equation}
-%and the parameters considered are $\lambda \in \{\gamma,bD, \Omega_{M_0}\}$.
+
 %The parameter dependence enters through $fD$ in the relations $P_{vv}\propto (fD\mu)^2$, the SN~Ia host-galaxy count overdensity
 %power spectrum $P_{\delta \delta }\propto (bD + fD\mu^2)^2$, and the galaxy-velocity cross-correlation $P_{vg}
 %\propto  (bD + fD\mu^2)fD$, where $b$ is the galaxy bias and $\mu\equiv \cos{(\hat{k} \cdot \hat{r})}$ where $\hat{r}$ is the direction of
@@ -254,6 +282,7 @@ Head start on developing skills for LSST.
 
 Northern Hemisphere.
 
+Already a scientifically interesting constraint.
 
 
 \section{Buy In}
