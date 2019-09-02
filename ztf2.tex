@@ -85,7 +85,6 @@ The same field is responsible for both overdensities and velocities so when comb
 
 \section{Near- and Long-Term Projections}
 
-
 Peculiar velocity surveys have already been  used to measure
 the effective $fD$ in redshift bins  (referred to as $f\sigma_8$), though not to a level where  gravity models can be precisely distinguished.
  \cite{2017MNRAS.471..839A} use 6dFGS peculiar velocities using  Fundamental Plane distances of elliptical galaxies to estimate absolute magnitudes
@@ -169,23 +168,59 @@ ZTF2 and TAIPAN lie in opposite ends of the diagram, there are small numbers of 
 whereas there are many TAIPAN Fundamental Plane galaxies with imprecise distances. 
 Conservative ZTF2 and TAIPAN
 are projected to give similar precisions $\sigma_ \gamma = 0.054$, whereas  the lower intrinsic magnitude dispersion  gives
-$\sigma_ \gamma = 0.042$.  Being in different hemispheres, the two surveys
+$\sigma_ \gamma = 0.042$.  
+Recall that the difference in $\gamma$  between GR and the $f(R)$ and DGP gravity is 0.13, meaning that these surveys
+can already distinguish between these models to $2-3 \sigma$.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{src/surface1.pdf}
+\caption{Uncertainties in $\gamma$ for surveys  with $z_{\text{max}}=0.09$ and $\Omega = 2\pi$.
+are shown as a function of number of sources $N$ and $\sigma_M$.  The positions of ZTF2 and TAIPAN are marked,
+with the latter showing both  a conservative $\sigma_M=0.12$~mag and the other for an aggressive $\sigma_M=0.08$~mag.
+\label{surface:fig}}
+\end{figure}
+
+Being in different hemispheres, the two surveys
 complementarily survey different parts of sky, meaning that their two independent results can be
 combined  quadratically to produce a reduced joint uncertainty.  An important distinction between the surveys is
 that TAIPAN will observe almost all available Fundamental Plane galaxies in the volume, meaning that no additional observing can
 increase the number density $n$ to
 move the TAIPAN point further rightwards in the diagram.  On the other hand, the number density of supernova increases
-linearly with time, meaning that there is continued room for improvement with longer surveys.
+linearly with time, meaning that since ZTF2 is not yet sample variance limited there is continued room for improvement with longer surveys.
+
+
+The conservative and aggressive values for intrinsic magnitude dispersion are related to the quality and variety of available supernova
+data
+obtained.  ZTF2 light-curves alone are projected to yield $0.12$~mag distance modulus uncertainties per supernova.
+Supplemental supernova follow-up data, say in the near-infrared and/or
+spectroscopy, from other telescopes can reduce the uncertainty to at least $\sigma_M=0.08$~mag.  The requirements
+and benefits of data beyond the imaging survey are discussed further in \S.
+
+A long-term supernova peculiar-velocity survey can be done with SNe~Ia discovered by LSST.
+As a 10-year survey, LSST generates higher supernova number densities to fainter limiting magnitude than the ZTF2 survey,
+making possible significantly improved constraints on the growth index.
+All the proposed LSST surveys have complete SN~Ia discovery out to $z=0.3$.
+The expected distance uncertainties derived from LSST light curves vary greatly depending on observing strategy, but at best
+is expected to be $\sigma_M=0.12$~mag.    As with the ZTF2 survey, even lower magnitude uncertainties
+can be achieved with supplemental data.
+
+Uncertainties in $\gamma$ for surveys with a 10-year duration and  and $\Omega=2\pi$ sky coverage 
+are shown as a function of number of limiting  redshift $z_{max}$ and $\sigma_M$ in Figure~\ref{lsst:fig}.
+This is applicable to LSST.
+The redshift depth afforded by LSST provides real improvement relative to the shallower ZTF2 survey.
+After 10 years, the region with $z_{max}<0.1$ have sensitivity to  $\sigma_\gamma$ that is weakly sensitive to $\sigma_M$, 
+which reflects the relatively strong sample variance in these small survey volume.  Better growth index constraints
+are achieved by going to $z_{max}>0.1$.  However, the differential benefit decreases quickly with increasing redshift;
+the increase in volume does not make up for the larger velocity uncertainties.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.49\textwidth]{src/surface1.pdf}
-\caption{
-\label{surface:fig}}
+\includegraphics[width=0.7\textwidth]{src/surface2.pdf}
+\caption{Uncertainties in $\gamma$ for surveys with a 10-year duration and  and $\Omega=2\pi$ sky coverage 
+are shown as a function of number of limiting  redshift $z_{max}$ and $\sigma_M$.
+\label{lsst:fig}}
 \end{figure}
-
-A long-term survey is LSST.  As a 10-year survey, it will produce a large number density.  The LSST WFD survey goes to a significantly
-fainter limiting magnitude extending the redshift range.
 
 %Given these  advances, supernovae discovered by wide-field searches in the next decade will 
 % be able to tightly constrain the growth of structure in the low-redshift Universe.
@@ -241,20 +276,20 @@ fainter limiting magnitude extending the redshift range.
 %is included and is a non-trivial contributor to the $\gamma$ constraint.  Number densities are taken to be
 %direction-independent, neglecting the slight declination-dependence of SN-survey time windows
 %
-All the surveys considered  provide meaningful tests of gravity.
-The projected uncertainty in $\gamma$ achieved by the suite of surveys are shown in Figure~\ref{var:fig}.
-The primary result is for the cross-correlation analysis that uses overdensities (RSD), peculiar velocities, and their cross-correlations.
-The short and shallow,  2-year, $z_{\rm max}=0.11$ survey has $\sigma_\gamma \sim 0.038$,
-which can distinguish  between  General Relativity, $f(R)$,  and DGP gravities at the $>3\sigma$ level.
-The 10-year survey performance asymptotes at $z_{\rm max} \sim0.2$ at a precision of  $\sigma_\gamma \sim 0.01$.
-Figure~\ref{var:fig} also shows uncertainties based on two other analyses, one that only uses peculiar velocities, and
-one that combines independent RSD and peculiar velocity results.
-Peculiar velocities alone
-account for much of the probative power of the surveys. RSD alone do not provide significant constraints.
-However, considering RSD and velocity cross-correlations decreases $\sigma_\gamma$ by  $\sim 20$\%.
-The implication is that there are important
-$k$-modes that are  sample variance limited either in  overdensity and/or peculiar velocity who benefit from the
-sample-noise suppression engendered by cross-correlations.
+%All the surveys considered  provide meaningful tests of gravity.
+%The projected uncertainty in $\gamma$ achieved by the suite of surveys are shown in Figure~\ref{var:fig}.
+%The primary result is for the cross-correlation analysis that uses overdensities (RSD), peculiar velocities, and their cross-correlations.
+%The short and shallow,  2-year, $z_{\rm max}=0.11$ survey has $\sigma_\gamma \sim 0.038$,
+%which can distinguish  between  General Relativity, $f(R)$,  and DGP gravities at the $>3\sigma$ level.
+%The 10-year survey performance asymptotes at $z_{\rm max} \sim0.2$ at a precision of  $\sigma_\gamma \sim 0.01$.
+%Figure~\ref{var:fig} also shows uncertainties based on two other analyses, one that only uses peculiar velocities, and
+%one that combines independent RSD and peculiar velocity results.
+%Peculiar velocities alone
+%account for much of the probative power of the surveys. RSD alone do not provide significant constraints.
+%However, considering RSD and velocity cross-correlations decreases $\sigma_\gamma$ by  $\sim 20$\%.
+%The implication is that there are important
+%$k$-modes that are  sample variance limited either in  overdensity and/or peculiar velocity who benefit from the
+%sample-noise suppression engendered by cross-correlations.
 
 %\begin{figure}
 %\centering
@@ -267,6 +302,15 @@ sample-noise suppression engendered by cross-correlations.
 %\end{figure}
 
 \section{LBL Plan for a Peculiar Velocity Program}
+The projections for measuring $\gamma$ with ZTF2 and LSST SN~Ia discoveries
+show the power of peculiar velocities surveys at low ($z<0.2$) redshift.
+This unmatched new tracer opens a new window with which to address
+the cosmological puzzles we are faced with today.
+
+LBL proposes to pursue the following course of research for the upcoming decade.
+
+\subsection{Near Term: ZTF2}
+
 Program has requisite data of which imaging survey is required but insufficient.
 
 For the LBL peculiar-velocity program, we propose a near-term ZTF2.  Long-term LSST.
@@ -283,6 +327,10 @@ Head start on developing skills for LSST.
 Northern Hemisphere.
 
 Already a scientifically interesting constraint.
+
+\subsection{Long Term: LSST}
+
+\subsection{Complementarity with High-$z$ redshift surveys}
 
 
 \section{Buy In}
@@ -319,8 +367,9 @@ A selfish objective is to have money flow through LBL
 A new Peculiar Velocity experiment outside of DESC
 Already requested for a ramp up of DOE-supported SN postdocs at LBL
 
-\subsection{DESI}
+\subsection{Through DESI}
 DESI
+
 We have already built a collaboration between DESI and the ZTF SN Ia Team
 DESI provides early access to spectra of transient host-galaxies taken as part of its surveys, particularly relevant is the BGS.
 DESI prioritizes observations of survey objects of interest to ZTF
