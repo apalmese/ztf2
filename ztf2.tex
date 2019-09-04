@@ -48,7 +48,7 @@ $f \equiv \frac{d\ln{D}}{d\ln{a}}$ is the linear growth rate where $a$ is the sc
 %}
 The $\Lambda$CDM prediction for the $z=0$ peculiar velocity power spectrum is shown in Figure~\ref{power:fig}. The growth of structure depends on gravity;
 \cite{2007APh....28..481L} find that General Relativity, $f(R)$,  and DGP gravity follow the relation
-$f \approx \Omega_M^\gamma$ with $\gamma=0.55, 0.42, 0.68$ respectively (see \cite{HUTERER201523} for a review
+$f \approx \Omega_M^\gamma$ with the growth index $\gamma=0.55, 0.42, 0.68$ respectively (see \cite{HUTERER201523} for a review
 or these  models).  Using this parameterization to model gravity, peculiar velocity
 surveys probe $\gamma$ through $fD$, whose $\gamma$-dependence is plotted 
 in Figure~2 of  \cite{1475-7516-2013-04-031}.
@@ -61,7 +61,7 @@ in Figure~2 of  \cite{1475-7516-2013-04-031}.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.49\textwidth]{/Users/akim/project/PeculiarVelocity/doc/src/new2.png}
+\includegraphics[width=0.6\textwidth]{/Users/akim/project/PeculiarVelocity/doc/src/new2.png}
 %\includegraphics[width=0.5\textwidth]{../outcosmo/zmax_.png}
 \caption{Volume-weighted peculiar velocity power spectrum $k^3P_{vv}(z=0)$ for $\mu \equiv \cos{(\hat{k} \cdot \hat{r})}=1, 0.5$ (magenta, cyan) 
 where $\hat{r}$ is the line of sight, as predicted for General Relativity in the linear regime.
@@ -83,7 +83,57 @@ The bias is a ``nuisance'' parameter, not present in the velocity power spectrum
 The same field is responsible for both overdensities and velocities so when combined in a common analysis the sample variance limit is lowered.
 
 
-\section{Near- and Long-Term Projections}
+A SN~Ia peculiar velocity survey is composed of several components:
+\begin{itemize}
+\item Transient Discoveries -- Wide-field cadenced imaging surveys detect and localize the angular coordinates of new supernovae.
+\item Discovery Screening -- Galaxy redshift catalogs, supplemental imaging data can provide subsets of the discoveries for classification
+using relatively expensive follow-up resources.
+\item SN~Ia Classification -- Spectroscopy classifies the SN~Ia from among the pool of  transient discoveries. 
+\item (Host-galaxy) Redshift -- Spectroscopy provides redshifts. 
+Host-galaxies generally have more/sharper features that provide more precise redshifts than the supernovae themselves. Resolution $R>200$
+is necessary to ensure that statistical uncertainties are negligible.
+\item SN~Ia Distance -- Imaging produces photometry and colors for light-curve fitting and getting distances.  The transient search naturally provides some data
+for this, of quality that varies depending on the survey strategy.
+Spectroscopy and NIR photometry
+have been shown to provide more precise distances than with optical light curves alone.
+\end{itemize}
+The above suite of observations provide a pure sample of SNe~Ia with observed redshifts and cosmological redshifts (inferred from the distances and
+the background Hubble law)
+whose difference is the radial peculiar velocity.
+
+The precision  in measuring $\gamma$ can be projected for different peculiar velocity surveys.
+The primary  parameters that affect the precision are: solid angle $\Omega$, SN number density $n$, source intrinsic
+magnitude dispersion $\sigma_M$, and for a distance-limited survey the maximum distance $r_{\text{max}}$ (alternatively redshift $z_{\text{max}}$).
+The dependence is most simply discerned 
+in the  Fisher information matrix
+\begin{align}
+F_{ij} 
+%& = \frac{V}{2}\int \frac{d^3k}{(2\pi)^3} \text{Tr}\left[ C^{-1} \frac{\partial C}{\partial \lambda_i} C^{-1}
+%\frac{\partial C}{\partial \lambda_j} \right]\\
+& = \frac{\Omega}{8\pi^2} \int_{r_{\rm min}}^{r_{\rm max}}  \int_{k_{\rm min}}^{k_{\rm max}}  \int_{-1}^{1} r^2 k^2 \text{Tr}\left[ C^{-1} \frac{\partial C}{\partial \lambda_i} C^{-1}
+\frac{\partial C}{\partial \lambda_j} \right] d\mu\,dk\,dr
+\label{fisher:eqn}
+\end{align}
+where
+\begin{equation}
+C(k,\mu)  =
+  \begin{bmatrix}
+   P_{\delta \delta}(k,\mu) + \frac{1}{n} &
+   P_{v\delta}(k,\mu)  \\
+   P_{v\delta}(k,\mu)  &
+  P_{vv}(k,\mu) + \frac{\sigma^2}{n}
+   \end{bmatrix},
+\label{cov:eq}
+\end{equation}
+and $\sigma \approx (\frac{5}{\ln{10}} \frac{1+z}{z})^{-1} \sigma_M$.
+The dependences of $\gamma$ and other parameters enter through $fD$ in the relations $P_{vv}\propto (fD\mu)^2$, the SN~Ia host-galaxy count overdensity
+power spectrum $P_{\delta \delta }\propto (bD + fD\mu^2)^2$, and the galaxy-velocity cross-correlation $P_{vg}
+\propto  (bD + fD\mu^2)fD$.  
+ The density and velocity covariances depend on the parameter set $\lambda \in \{\gamma, \Omega_{M0}, b\}$, the latter through
+$\Omega_M=\frac{\Omega_{M_0}}{\Omega_{M_0} + (1-\Omega_{M_0})a^3}$.  
+The uncertainty in the growth index is bounded by $\sqrt{F^{-1}_{\gamma \gamma}}$.
+
+\section{Current Results and Projections}
 
 Peculiar velocity surveys have already been  used to measure
 the effective $fD$ in redshift bins  (referred to as $f\sigma_8$), though not to a level where  gravity models can be precisely distinguished.
@@ -130,35 +180,6 @@ hundreds of thousands; over the course of 10-years, LSST will find $\sim150,000$
 
 
 
-The primary  parameters that affect the precision obtained from a peculiar velocity survey are: solid angle $\Omega$, number density $n$, source intrinsic
-magnitude dispersion $\sigma_M$, and for a distance-limited survey the maximum distance $r_{\text{max}}$ (alternatively redshift $z_{\text{max}}$).
-The dependence is most simply discerned 
-in the  Fisher information matrix
-\begin{align}
-F_{ij} 
-%& = \frac{V}{2}\int \frac{d^3k}{(2\pi)^3} \text{Tr}\left[ C^{-1} \frac{\partial C}{\partial \lambda_i} C^{-1}
-%\frac{\partial C}{\partial \lambda_j} \right]\\
-& = \frac{\Omega}{8\pi^2} \int_{r_{\rm min}}^{r_{\rm max}}  \int_{k_{\rm min}}^{k_{\rm max}}  \int_{-1}^{1} r^2 k^2 \text{Tr}\left[ C^{-1} \frac{\partial C}{\partial \lambda_i} C^{-1}
-\frac{\partial C}{\partial \lambda_j} \right] d\mu\,dk\,dr
-\label{fisher:eqn}
-\end{align}
-where
-\begin{equation}
-C(k,\mu)  =
-  \begin{bmatrix}
-   P_{\delta \delta}(k,\mu) + \frac{1}{n} &
-   P_{v\delta}(k,\mu)  \\
-   P_{v\delta}(k,\mu)  &
-  P_{vv}(k,\mu) + \frac{\sigma^2}{n}
-   \end{bmatrix},
-\label{cov:eq}
-\end{equation}
-and $\sigma \approx (\frac{5}{\ln{10}} \frac{1+z}{z})^{-1} \sigma_M$.
-The dependences of $\gamma$ and other parameters enter through $fD$ in the relations $P_{vv}\propto (fD\mu)^2$, the SN~Ia host-galaxy count overdensity
-power spectrum $P_{\delta \delta }\propto (bD + fD\mu^2)^2$, and the galaxy-velocity cross-correlation $P_{vg}
-\propto  (bD + fD\mu^2)fD$.  Details
-on the assumptions made for the calculation can be found in \cite{2019BAAS...51c.140K}.
-
 ZTF2 and TAIPAN are near-term surveys that will measure peculiar velocities.  Both have roughly
  $z_{\text{max}}=0.09$ and $\Omega = 2\pi$.
 Uncertainties in $\gamma$ for surveys with this depth and solid-angle coverage 
@@ -171,10 +192,12 @@ are projected to give similar precisions $\sigma_ \gamma = 0.054$, whereas  the 
 $\sigma_ \gamma = 0.042$.  
 Recall that the difference in $\gamma$  between GR and the $f(R)$ and DGP gravity is 0.13, meaning that these surveys
 can already distinguish between these models to $2-3 \sigma$.
+Details
+on the assumptions made for the calculation can be found in \cite{2019BAAS...51c.140K}.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.7\textwidth]{src/surface1.pdf}
+\includegraphics[width=0.6\textwidth]{src/surface1.pdf}
 \caption{Uncertainties in $\gamma$ for surveys  with $z_{\text{max}}=0.09$ and $\Omega = 2\pi$.
 are shown as a function of number of sources $N$ and $\sigma_M$.  The positions of ZTF2 and TAIPAN are marked,
 with the latter showing both  a conservative $\sigma_M=0.12$~mag and the other for an aggressive $\sigma_M=0.08$~mag.
@@ -216,7 +239,7 @@ the increase in volume does not make up for the larger velocity uncertainties.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.7\textwidth]{src/surface2.pdf}
+\includegraphics[width=0.6\textwidth]{src/surface2.pdf}
 \caption{Uncertainties in $\gamma$ for surveys with a 10-year duration and  and $\Omega=2\pi$ sky coverage 
 are shown as a function of number of limiting  redshift $z_{max}$ and $\sigma_M$.
 \label{lsst:fig}}
@@ -306,7 +329,6 @@ The projections for measuring $\gamma$ with ZTF2 and LSST SN~Ia discoveries
 show the power of peculiar velocities surveys at low ($z<0.2$) redshift.
 This unmatched new tracer opens a new window with which to address
 the cosmological puzzles we are faced with today.
-
 LBL proposes to pursue the following course of research for the upcoming decade.
 
 \subsection{Near Term: ZTF2}
