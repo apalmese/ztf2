@@ -12,7 +12,7 @@
 
 
 \title{LBL Peculiar-Velocity Program: ZTF2 and LSST}
-\author{The Author}
+\author{Alex Kim}
 %\date{}							% Activate to display a given date or no date
 
 \begin{document}
@@ -134,7 +134,7 @@ $\Omega_M=\frac{\Omega_{M_0}}{\Omega_{M_0} + (1-\Omega_{M_0})a^3}$.
 The uncertainty in the growth index is bounded by $\sqrt{F^{-1}_{\gamma \gamma}}$.
 
 \section{Current Results and Projections}
-
+\subsection{Current Results}
 Peculiar velocity surveys have already been  used to measure
 the effective $fD$ in redshift bins  (referred to as $f\sigma_8$), though not to a level where  gravity models can be precisely distinguished.
  \cite{2017MNRAS.471..839A} use 6dFGS peculiar velocities using  Fundamental Plane distances of elliptical galaxies to estimate absolute magnitudes
@@ -157,7 +157,7 @@ SNe~Ia discovered by ASAS-SN, ATLAS, and ZTF \cite{2014ApJ...788...48S,2018PASP.
 %Measurement of the velocity field using LSST-discovered
 %SNe~Ia has been quantified by \cite{2011PhRvD..83d3004B,2017JCAP...01..060O}
 
-
+\subsection{Projections}
 Two advances in the upcoming decade will make SN~Ia peculiar velocities more powerful.
 First, the precision of SN~Ia distances can be improved.  The commonly-used empirical 2-parameter spectral model yields  absolute magnitude
 dispersion $\sigma_M \gtrsim 0.12$~mag.  However, SNe transmit more information than just the light-curve shape and single color used in current SN models.
@@ -178,22 +178,40 @@ hundreds of thousands; over the course of 10-years, LSST will find $\sim150,000$
  the (two) ten-year SN~Ia survey will have
  a (6) 29$\times$ reduction in shot-noise, $\sigma^2_M/n$, relative to the Fundamental Plane survey of TAIPAN.
 
+A peculiar velocity program begins with a cadenced wide-field imaging survey that provides SN~Ia discovery, and hence 
+determine the number
+density of objects with which to work with.    
+It is thus convenient to make projections for upcoming peculiar velocity programs
+based on the imaging survey, keeping in mind that other follow-up resources that can affect distance precisions and 
+get the classifications and redshifts
+necessary for the programs success.  The projections are considered using ZTF2 and LSST 
+as canonical representatives of imaging surveys.
 
+Details on the assumptions made for the calculations that follow can be found in \cite{2019BAAS...51c.140K}.
 
-ZTF2 and TAIPAN are near-term surveys that will measure peculiar velocities.  Both have roughly
+The primary sources of systematic error in a high-redshift supernova Hubble diagram are not as important for a low-redshift
+peculiar velocity survey.  A Hubble diagram that spans a broad redshift range requires absolute color calibration over the corresponding observer-frame
+wavelength range and control over the different populations that could exist over the span of cosmic time.  Peculiar velocity surveys are
+particularly sensitive at low-redshift,  meaning that flux calibration and population evolution are not so important.
+
+\subsubsection{Near-Term: ZTF2}
+ZTF2 and TAIPAN are near-term surveys that will measure peculiar velocities, the former using SNe~Ia as probes and the latter
+using Fundamental Plane Galaxies.  Both have roughly
  $z_{\text{max}}=0.09$ and $\Omega = 2\pi$.
 Uncertainties in $\gamma$ for surveys with this depth and solid-angle coverage 
-are shown as a function of number of sources $N$ and $\sigma_M$ in Figure~\ref{surface:fig}. The positions of ZTF2 and TAIPAN are marked
-in the Figure, with the latter showing both  a conservative $\sigma_M=0.12$~mag and the other for an aggressive $\sigma_M=0.08$~mag.
+are shown as a function of number of sources $N$ and $\sigma_M$ in Figure~\ref{surface:fig}. 
+
+The positions of ZTF2 and TAIPAN are marked
+in the figure, with the latter showing both  a conservative $\sigma_M=0.12$~mag and aggressive $\sigma_M=0.08$~mag
+to capture the range of possible SN follow-up.
 ZTF2 and TAIPAN lie in opposite ends of the diagram, there are small numbers of ZTF2 SNe with precise distances
 whereas there are many TAIPAN Fundamental Plane galaxies with imprecise distances. 
 Conservative ZTF2 and TAIPAN
-are projected to give similar precisions $\sigma_ \gamma = 0.054$, whereas  the lower intrinsic magnitude dispersion  gives
-$\sigma_ \gamma = 0.042$.  
+are projected to give similar precisions $\sigma_ \gamma = 0.053$, whereas  the lower intrinsic magnitude dispersion  gives
+$\sigma_ \gamma = 0.043$.  
 Recall that the difference in $\gamma$  between GR and the $f(R)$ and DGP gravity is 0.13, meaning that these surveys
 can already distinguish between these models to $2-3 \sigma$.
-Details
-on the assumptions made for the calculation can be found in \cite{2019BAAS...51c.140K}.
+
 
 \begin{figure}
 \centering
@@ -212,14 +230,7 @@ increase the number density $n$ to
 move the TAIPAN point further rightwards in the diagram.  On the other hand, the number density of supernova increases
 linearly with time, meaning that since ZTF2 is not yet sample variance limited there is continued room for improvement with longer surveys.
 
-
-The conservative and aggressive values for intrinsic magnitude dispersion are related to the quality and variety of available supernova
-data
-obtained.  ZTF2 light-curves alone are projected to yield $0.12$~mag distance modulus uncertainties per supernova.
-Supplemental supernova follow-up data, say in the near-infrared and/or
-spectroscopy, from other telescopes can reduce the uncertainty to at least $\sigma_M=0.08$~mag.  The requirements
-and benefits of data beyond the imaging survey are discussed further in \S.
-
+\subsubsection{Long-Term: LSST}
 A long-term supernova peculiar-velocity survey can be done with SNe~Ia discovered by LSST.
 As a 10-year survey, LSST generates higher supernova number densities to fainter limiting magnitude than the ZTF2 survey,
 making possible significantly improved constraints on the growth index.
@@ -234,8 +245,10 @@ This is applicable to LSST.
 The redshift depth afforded by LSST provides real improvement relative to the shallower ZTF2 survey.
 After 10 years, the region with $z_{max}<0.1$ have sensitivity to  $\sigma_\gamma$ that is weakly sensitive to $\sigma_M$, 
 which reflects the relatively strong sample variance in these small survey volume.  Better growth index constraints
-are achieved by going to $z_{max}>0.1$.  However, the differential benefit decreases quickly with increasing redshift;
-the increase in volume does not make up for the larger velocity uncertainties.
+are achieved by going to $z_{max}>0.1$, conversely, surveys even shallower than the $z_{\text{max}}=0.09$ 
+of ZTF2 quickly degrade.
+The differential benefit of going deeper slows down at higher redshifts as the increasing velocity uncertainties are not compensated by
+the increase in survey volume. 
 
 \begin{figure}
 \centering
@@ -245,110 +258,46 @@ are shown as a function of number of limiting  redshift $z_{max}$ and $\sigma_M$
 \label{lsst:fig}}
 \end{figure}
 
-%Given these  advances, supernovae discovered by wide-field searches in the next decade will 
-% be able to tightly constrain the growth of structure in the low-redshift Universe.
-%For example, 
-%over the course of a decade a SN survey relying on LSST discoveries 
-%plus spectroscopic redshifts can produce  4--14\% uncertainties in $fD$ in $0.05$ redshift bins from $z=0$ to 0.3, cumulatively giving
-%2.2\% uncertainty on $fD$  within this interval, where at
-%$0<z<0.2$ most of the probative power comes from peculiar velocities and at higher redshifts from RSD  \cite{2017ApJ...847..128H}.
-%
-%\section{Testing Gravity with Peculiar Velocity Surveys}
-%While the growth rate $fD$ can be used to test several aspects of physics beyond the standard cosmological model (e.g.\ dark matter clustering, dark energy evolution), our scientific interest is in probing gravity,
-%so here we focus  on the growth index $\gamma$.
-%To illustrate the distinction,
-% $\frac{d(\ln{fD})}{d\gamma} = \ln\Omega_M + \int \Omega_M^{\gamma} \ln{\Omega_M}\, d\ln{a} \approx -1.68, -0.75,-0.37$ at $z=0,0.5,1.0$ respectively
-% in $\Lambda$CDM;  two surveys with the same fractional precision  in $fD$ will have different precision in $\gamma$,
-% with the one at lower redshift providing the tighter constraint. 
-% In this section, we demonstrate that peculiar velocity surveys in the upcoming decade can measure $\gamma$ precisely
-%for a range of survey-parameter choices.
-% 
-%
-%We project uncertainties  on the growth index, $\sigma_\gamma$ for a suite of idealized surveys
-%using a Fisher matrix analysis similar to that of \cite{2017ApJ...847..128H, 2017MNRAS.464.2517H}
-%(there is an alternative approach using an estimator for the mean pairwise velocity
-%\cite{2011PhRvD..83d3004B}).
-%The ``cross-correlation'' analysis incorporates both galaxy overdensities and peculiar velocities.
-
-%The parameter dependence enters through $fD$ in the relations $P_{vv}\propto (fD\mu)^2$, the SN~Ia host-galaxy count overdensity
-%power spectrum $P_{\delta \delta }\propto (bD + fD\mu^2)^2$, and the galaxy-velocity cross-correlation $P_{vg}
-%\propto  (bD + fD\mu^2)fD$, where $b$ is the galaxy bias and $\mu\equiv \cos{(\hat{k} \cdot \hat{r})}$ where $\hat{r}$ is the direction of
-%the line of sight.  While the $bD$ term does contain information on $\gamma$, its constraining power is not used here.
-%Both $f$ and $D$ depend on $\Omega_M=\frac{\Omega_{M_0}}{\Omega_{M_0} + (1-\Omega_{M_0})a^3}$.
-%The uncertainty in $\gamma$ is $\sigma_\gamma = \sqrt{\left(F^{-1}\right)_{\gamma\gamma}}$.
-%Non-GR models may  also predict a change in the scale-dependence of the growth or non-constant $\gamma$, such observations provide additional leverage in probing gravity
-%but are not considered here.
-
-%The uncertainty  $\sigma_\gamma$ of a survey depends on its solid angle $\Omega$, depth
-%given by the comoving distance out to the maximum redshift $r_{\rm max}=r(z_{\rm max})$, duration
-%$t$ through $n=\epsilon \phi t$ where $\phi$ is the observer-frame SN~Ia rate
-%and $\epsilon$ is the sample-selection efficiency, and
-%the intrinsic SN~Ia magnitude dispersion 
-%through the resulting peculiar velocity intrinsic dispersion $\sigma \approx (\frac{5}{\ln{10}} \frac{1+z}{z})^{-1} \sigma_M$.
-%
-%
-%We consider SN peculiar velocity surveys for a range of redshift depths $z_{\rm max}$ for durations of $t=2$ and 10~years.
-%The other survey parameters
-%$\Omega=3\pi$, $\epsilon=0.65$, $\sigma_M=0.08$~mag are fixed.
-%The $k$-limits are  taken to be $k_{\rm min} = \pi/r_{\rm max}$  and 
-%$k_{\rm max} = 0.1$~$h$\,Mpc$^{-1}$.
-%A minimum distance $r_{\rm min}=r(z=0.01)$ is imposed as our analysis assumes that peculiar velocities are significantly  smaller than
-%the cosmological redshift.
-%The sample-selection efficiency $\epsilon$ is redshift-independent, i.e.\ the native redshift distribution is not sculpted.
-%The input bias of SN~Ia host galaxies is set as $b=1.2$.  An independent measurement of $\Omega_{M_0}=0.3\pm0.005$
-%is included and is a non-trivial contributor to the $\gamma$ constraint.  Number densities are taken to be
-%direction-independent, neglecting the slight declination-dependence of SN-survey time windows
-%
-%All the surveys considered  provide meaningful tests of gravity.
-%The projected uncertainty in $\gamma$ achieved by the suite of surveys are shown in Figure~\ref{var:fig}.
-%The primary result is for the cross-correlation analysis that uses overdensities (RSD), peculiar velocities, and their cross-correlations.
-%The short and shallow,  2-year, $z_{\rm max}=0.11$ survey has $\sigma_\gamma \sim 0.038$,
-%which can distinguish  between  General Relativity, $f(R)$,  and DGP gravities at the $>3\sigma$ level.
-%The 10-year survey performance asymptotes at $z_{\rm max} \sim0.2$ at a precision of  $\sigma_\gamma \sim 0.01$.
-%Figure~\ref{var:fig} also shows uncertainties based on two other analyses, one that only uses peculiar velocities, and
-%one that combines independent RSD and peculiar velocity results.
-%Peculiar velocities alone
-%account for much of the probative power of the surveys. RSD alone do not provide significant constraints.
-%However, considering RSD and velocity cross-correlations decreases $\sigma_\gamma$ by  $\sim 20$\%.
-%The implication is that there are important
-%$k$-modes that are  sample variance limited either in  overdensity and/or peculiar velocity who benefit from the
-%sample-noise suppression engendered by cross-correlations.
-
-%\begin{figure}
-%\centering
-%\includegraphics[width=0.49\textwidth]{src/var.png}
-%\caption{The projected uncertainty in $\gamma$, $\sigma_\gamma$, achieved by two-year (red) and ten-year (black) SN~Ia surveys of varying depth $z_{\rm max}$.
-%For each survey uncertainties are based on three types of analyses:  using only peculiar velocities (dashed); using
-%both RSD and peculiar velocities independently (dotted);  using
-%both RSD, peculiar velocities, and their cross-correlation (solid).
-%\label{var:fig}}
-%\end{figure}
 
 \section{LBL Plan for a Peculiar Velocity Program}
 The projections for measuring $\gamma$ with ZTF2 and LSST SN~Ia discoveries
-show the power of peculiar velocities surveys at low ($z<0.2$) redshift.
+show the power of peculiar velocities surveys at low redshift.
 This unmatched new tracer opens a new window with which to address
 the cosmological puzzles we are faced with today.
 LBL proposes to pursue the following course of research for the upcoming decade.
 
-\subsection{Near Term: ZTF2}
-
-Program has requisite data of which imaging survey is required but insufficient.
-
-For the LBL peculiar-velocity program, we propose a near-term ZTF2.  Long-term LSST.
-
-Why ZTF2?
-
-
-It is ready to go now.
-
-Relatively cheap, infrastructure in place.
-
-Head start on developing skills for LSST.
-
-Northern Hemisphere.
 
 Already a scientifically interesting constraint.
+Head start on developing skills for LSST.
+
+
+\subsection{Near Term: ZTF2}
+
+For its near-term peculiar-velocity program, LBL advocates a survey using SN~Ia discoveries from ZTF2.
+The reasons why:
+\begin{itemize}
+\item A peculiar-velocity survey is already being touted as a primary science motivator,  As such,
+the observing strategy should accommodate our needs.
+\item It is ready to start soon.  The infrastructure is in place.
+\item It is cheap, with a cost ranging from zero to access public data, to an amount smaller
+than building a new facility.
+\item SEDMachine available for SN classification.
+\item It is in the Northern Hemisphere, which complements and is not superseded by LSST.
+\item It goes to sufficient depth to have a scientifically interesting result near term.
+\end{itemize}
+
+The conservative and aggressive values for intrinsic magnitude dispersion are related to the quality and variety of available supernova
+data
+obtained.  ZTF2 light-curves alone are projected to yield $0.12$~mag distance modulus uncertainties per supernova.
+Supplemental supernova follow-up data, say in the near-infrared and/or
+spectroscopy, from other telescopes can reduce the uncertainty to at least $\sigma_M=0.08$~mag.  The requirements
+and benefits of data beyond the imaging survey are discussed further in \S.
+
+ZTF2 public or buy-in?
+
+Supplemental data.
+
+SNIFS
 
 \subsection{Long Term: LSST}
 
