@@ -1,0 +1,115 @@
+\section{Probing Gravity With SN~Ia  Peculiar Velocity Surveys}
+In the late 1990's, Type~Ia supernovae (SNe~Ia) were used as distance probes to measure the homogeneous expansion history of the Universe.  The remarkable discovery
+that the expansion is accelerating  has called into question our basic understanding of the gravitational forces within the Universe.  Either it
+is dominated by a ``dark energy'' that is gravitationally repulsive, or General Relativity is inadequate and needs to be replaced by a modified theory of
+gravity.  It is only appropriate that in the upcoming decade, with their sheer numbers, solid-angle coverage,
+and improved distance precisions, SNe~Ia will provide measurements of the {\it inhomogeneous} motions of structures in the Universe
+that will provide an unmatched test of whether dark energy or modified gravity is responsible for the accelerating expansion of the Universe.
+
+In the next decade, SNe~Ia will be used as peculiar-velocity probes to measure  the influence of gravity on structure formation within the Universe.
+Peculiar velocities induce scatter along the redshift axis of the SN Hubble diagram, which is
+pronounced at low redshifts and when the magnitude scatter (e.g.\ due to intrinsic magnitude dispersion) is small.
+The peculiar velocity power spectrum is sensitive to the growth of structure as $P_{vv}\propto (fD)^2$, where $D$ is  the spatially-independent
+``growth factor'' in the linear evolution of density perturbations and
+$f \equiv \frac{d\ln{D}}{d\ln{a}}$ is the linear growth rate where $a$ is the scale factor  \citep{2006PhRvD..73l3526H,2011ApJ...741...67D}.
+The combination $fD$ evolves with redshift;
+%\footnote{
+%To be precise, the peculiar
+%velocity power spectrum also depends on the Hubble parameter as $P_{vv}\propto (HfD)^2$.  A supernova  survey  measures luminosity distance fluctuations
+%$\delta_{d_L} = (d_L- \bar{d}_L(z))/\bar{d}_L(z)$, where $d_L$ and  $\bar{d}_L(z)$ are the measured and expected distances at the observed redshift $z$.
+%To first order in peculiar velocity along the line of sight $v$, $\delta_{d_L} =  v \left(1-\frac{1}{H\bar{d}_L(z)}\right) \approx -\frac{v}{H\bar{d}_L(z)}$
+%at low redshift.   The $H$-dependences of  $P_{vv}$ and the conversion from distances to velocities cancel, making  peculiar velocity surveys sensitive to $(fD)^2$.
+%}
+the $\Lambda$CDM prediction for the $z=0$ peculiar velocity power spectrum is shown in Figure~\ref{power:fig}.
+
+The  growth of structure depends on gravity;
+\citet{PhysRevD.72.043529,2007APh....28..481L} find that General Relativity, $f(R)$,  and DGP gravity follow the relation
+$f \approx \Omega_M^\gamma$ with the growth index $\gamma=0.55, 0.42, 0.68$ respectively \citep[see][for a review
+or these  models]{HUTERER201523}.  
+Using this parameterization, peculiar velocity
+surveys probe  gravity through by modeling $fD=\Omega_M^{\gamma} \exp{\left(-\int_a^1 \Omega_M^{\gamma} d\ln{a} \right)}$,
+where $\Omega_M(a)$ \replaced[id=2]{also depends on the gravity model}{depends on expansion rate determined by gravity}.
+The  $\gamma$-dependence of $fD(z)$ is shown 
+in Figure~2 of  \citet{1475-7516-2013-04-031}.
+
+%
+%The parameter $\sigma_8$, the  standard deviation of overdensities in 8$h^{-1}$Mpc spheres, is 
+%commonly used in place of $D$ to normalize the
+%overall amplitude of  overdensities, so the standard parameterization used by the community is $f\sigma_8$.}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{/Users/akim/project/PeculiarVelocity/doc/src/new2.png}
+%\includegraphics[width=0.5\textwidth]{../outcosmo/zmax_.png}
+\caption{\replaced[id=2]{Dimensionless}{Volume-weighted} peculiar velocity power spectrum $k^3P_{vv}(z=0)$ for $\mu \equiv \cos{(\hat{k} \cdot \hat{r})}=1, 0.5$ (magenta, cyan) 
+where $\hat{r}$ is the line of sight, as predicted for General Relativity in the linear regime.
+Overplotted are peculiar-velocity power-spectrum shot noise  (diagonal lines) for various observing parameters.  Red shows the shot noise expected from a 2-year LSST survey
+while black shows a 10-year LSST survey.  The dotted and dashed lines indicate the assumed intrinsic magnitude dispersion, using 0.08 (dashed) or 0.15 mag (dotted).  The expected shot
+noise from TAIPAN is shown in green (dash-dotted). 
+%
+%Overplotted are volume-weighted peculiar velocity shot-noise  $k^3\sigma^2/n$ at $z=0.1$ expected from 2- and 10-year (red, black) supernova densities, 0.08 and 0.15~mag (dashed, dotted) intrinsic magnitude dispersions, and TAIPAN (green, dash-dotted).
+The bottom solid grey horizontal lines show the approximate range of $k$ expected to be used in surveys with corresponding
+redshift depths $z_{\rm max}$.
+\label{power:fig}}
+\end{figure}
+
+The same SNe~Ia used  to measure peculiar velocities can also serve as tracers of mass overdensities.  Overdensities and their motions are connected by the
+continuity equation, so the SN-overdensity power spectrum also depends on gravity 
+as $P_{\delta \delta }\propto (bD + fD\mu^2)^2$ where $b$ is the SN bias and $\mu\equiv \cos{(\hat{k} \cdot \hat{r})}$ where $\hat{r}$ is the direction of
+the line of sight.  
+The bias is a ``nuisance'' parameter, not present in the velocity power spectrum, which must marginalized out when inferring $\gamma$.
+The same field is responsible for both overdensities and velocities so when combined in a common analysis the sample variance limit is lowered.
+
+
+A SN~Ia peculiar velocity survey is composed of several components:
+\begin{itemize}
+\item Transient Discoveries -- Wide-field cadenced imaging surveys detect and localize the angular coordinates of new supernovae.
+\item Discovery Screening -- Galaxy redshift catalogs, supplemental imaging data can provide subsets of the discoveries for classification
+using relatively expensive follow-up resources.
+\item SN~Ia Classification -- Spectroscopy classifies the SN~Ia from among the pool of  transient discoveries. 
+\item (Host-galaxy) Redshift -- Spectroscopy provides redshifts. 
+Host-galaxies generally have more/sharper features that provide more precise redshifts than the supernovae themselves. Resolution $R>200$
+is \replaced{sufficient}{necessary} to ensure that statistical uncertainties are negligible.
+\item SN~Ia Distance -- Imaging produces photometry and colors for light-curve fitting and getting distances.  The transient search naturally provides some data
+for this, of quality that varies depending on the survey strategy.
+Spectroscopy and NIR photometry
+have been shown to provide more precise distances than with optical light curves alone.
+\end{itemize}
+The above suite of observations provide a pure sample of SNe~Ia with observed redshifts and cosmological redshifts (inferred from the distances and
+the background Hubble law)
+whose difference is the radial peculiar velocity.
+
+The precision  in measuring $\gamma$ can be projected for different peculiar velocity surveys.
+The primary  parameters that affect the precision are: solid angle $\Omega$, SN number density $n$, source intrinsic
+magnitude dispersion $\sigma_M$, and for a distance-limited survey the maximum distance $r_{\text{max}}$ (alternatively redshift $z_{\text{max}}$).
+The dependence is most simply discerned 
+in the  Fisher information matrix
+\begin{align}
+F_{ij} 
+%& = \frac{V}{2}\int \frac{d^3k}{(2\pi)^3} \text{Tr}\left[ C^{-1} \frac{\partial C}{\partial \lambda_i} C^{-1}
+%\frac{\partial C}{\partial \lambda_j} \right]\\
+& = \frac{\Omega}{8\pi^2} \int_{r_{\rm min}}^{r_{\rm max}}  \int_{k_{\rm min}}^{k_{\rm max}}  \int_{-1}^{1} r^2 k^2 \text{Tr}\left[ C^{-1} \frac{\partial C}{\partial \lambda_i} C^{-1}
+\frac{\partial C}{\partial \lambda_j} \right] d\mu\,dk\,dr
+\label{fisher:eqn}
+\end{align}
+where
+\begin{equation}
+C(k,\mu,a)  =
+  \begin{bmatrix}
+   P_{\delta \delta}(k,\mu,a) + \frac{1}{n} &
+   P_{v\delta}(k,\mu,a)  \\
+   P_{v\delta}(k,\mu,a)  &
+  P_{vv}(k,\mu,a) + \frac{\sigma^2}{n}
+   \end{bmatrix},
+\label{cov:eq}
+\end{equation}
+and the
+\added[id=1]{peculiar-velocity  uncertainty  ($\sigma$) is related to magnitude uncertainty via $\sigma_M^2 =  \left(\frac{5}{\ln{10}}\right)^2 \left(1-\frac{1}{Ha\chi}\right)^2 \sigma^2$.}
+The dependences of $\gamma$ and other parameters enter through $fD$ in the relations $P_{vv}\propto (fD\mu)^2$, the SN~Ia host-galaxy count overdensity
+power spectrum $P_{\delta \delta }\propto (bD + fD\mu^2)^2$, and the galaxy-velocity cross-correlation $P_{vg}
+\propto  (bD + fD\mu^2)fD\mu$.  
+ The density and velocity covariances depend on the parameter set $\lambda \in \{\gamma, \Omega_{M0}, b\}$.
+Taking $\Lambda$CDM as our fiducial model, 
+$\Omega_M=\frac{\Omega_{M_0}}{\Omega_{M_0} + (1-\Omega_{M_0})a^3}$.  
+The uncertainty in the growth index is bounded by $\sqrt{F^{-1}_{\gamma \gamma}}$.

@@ -1,0 +1,116 @@
+
+
+\section{Plan for a Peculiar Velocity Program}
+The projections for measuring $\gamma$ with ZTF2 and LSST SN~Ia discoveries
+show the power of peculiar velocities surveys at low redshift.
+This  tracer provides an unmatched  new window with which to test gravity and the source of the accelerating expansion of the Universe.
+We propose the following course of research for the upcoming decade.
+
+\subsection{Present}
+The current goals are to provide a proof of concept of a SN peculiar velocity survey while developing domain
+expertise and pipelines that can be used in future experiments.
+
+Kim has developed a SNFactory/ZTF peculiar-velocity analysis framework with a postdoc.  Its distinguishing features is that it is likelihood-based
+including both density and peculiar velocities.  The complexity of including fitting the underlying mass density field in the model
+is addressed through Hamiltonian Monte Carlo.  Analytic expressions for the partial derivatives of the likelihood are coded,
+avoiding the computational limitations of {\it autodiff} in STAN.  A end-to-end implementation is complete, validation of it is ongoing.
+
+The first application o the analysis pipeline will be for SNFactory supernovae.  A next analysis will be of ZTF-discovered 
+SNe when those data are ready.  The plan is for a  subset of the required data, precision redshifts of SN host galaxies, to be provided
+by DESI.  Additional DESI data contributions are being discussed.
+
+\subsection{Near Term: DESI as TAIPAN-North}
+
+There has been talk of using BGS for a peculiar-velocity survey.  There is some question as to how deep the BGS achieves.  This should be
+dug into.
+
+\subsection{Near Term: ZTF2 + DESI}
+A near-term peculiar velocity program can already provide the most competitive measurements of $\gamma$ at low redshift.  Engaging in science
+now positions LBL for domain leadership in the LSST era.  For its near-term peculiar-velocity program, we advocate a survey using SN~Ia discoveries from ZTF2,
+rather than other possible surveys, for the following reasons:
+\begin{itemize}
+\item A peculiar-velocity survey is already being touted as a primary science driver. As such,
+the observing strategy should accommodate our needs.
+\item It would be ready to start at the end of ZTF in 2021.
+\item It is cheap, with a cost ranging from zero to access public data, to an amount (\$300k?) smaller
+than building a new facility.
+\item ZTF2 includes SEDMachine for classification of $m<18.5$~mag  transients.
+\item It is in the Northern Hemisphere, which complements and is not superseded by LSST. 
+Even after the nominal 3-year survey and simultaneous with LSST, the facility remains important for peculiar-velocity studies.
+\item It is anticipated that the public plus private collaboration surveys can be designed to generate distance
+precisions of $\sigma_M =0.12$~mag, which allow good velocity measurements with SNe~Ia.  (Additional follow-up can lower this uncertainty further.)
+\item The limiting redshift $z_{\text{max}} =0.09$ is sufficiently deep  to have a scientifically interesting result $\sigma_\gamma < 0.053$.
+There are other SN searches that do not achieve this depth.
+\end{itemize}
+
+ZTF2 SN~Ia discoveries are combined with data from other facilities to form a complete PV program.  We propose:
+\begin{itemize}
+\item DESI will provide the following components of the survey:
+\begin{itemize}
+\item Discovery Screening -- Provides redshifts for probable host galaxies of new transients, for use in early classification.  A host galaxy may
+already have a DESI redshift, may be a BGS target without a redshift but whose observation could be prioritized,  or non-DESI target for which we
+make a secondary-target fiber allocation.
+\item SN Ia Classification -- Spectroscopy of active transients  through secondary-target fiber allocations within
+DESI survey pointings. There
+will be $\sim 1$ active $r<21.5$ SN~Ia in every three DESI pointings.  Coordinating DESI pointings such that ``every'' pointing contains
+a  ZTF2 discovery can significantly increase the number of classifications, relative to the random (from the transient perspective) default DESI pointings.
+Triggered observations of non-DESI pointings is possible, though does not take advantage of DESI multiplexing.
+\item Host-galaxy redshift -- Some precise galaxy redshifts may not be available at the end of the ZTF2 survey.  Mopping up of ZTF2 host-galaxy redshifts
+can be done efficiently with a single sweep of DESI's MOS.
+\end{itemize}
+ The $R>2000$ resolution
+provides sufficiently precise redshifts so as to make their uncertainties negligible in the $\gamma$ error budget.
+Its BGS targets  will host a large fraction of ZTF2-discovered SNe~Ia.
+\item SNIFS at the UH-88 is used to spectroscopically observe a subset of active likely-SN~Ia transients.  SNIFS provides simultaneously
+\begin{itemize}
+\item SN Ia Classification -- SNIFS can supplement SED Machine to go toward 100\% SN~Ia classifications
+while going deeper than the nominal $18.5$~mag limit of SED Machine.
+\item Host-galaxy redshift.
+\item SN Ia Distance -- SNIFS has already been used to standardize SNe~Ia magnitudes to $\sigma_M=0.08$~mag.  SNIFS observations will be
+designed to obtain this precision.  This SN subset  will have relatively smaller peculiar-velocity uncertainties relative to 
+those with only ZTF2 photometry.  The SNIFS IFU provides local host-galaxy properties, which may also improve SN distance precisions.
+\end{itemize}
+The University of Hawaii must allocate time and resources into the program.  There is already UH expertise in supernovae and peculiar velocities and an existing relationship
+with LBL.
+\item NIR -- Something through UH?
+\begin{itemize}
+\item SN Ia Distance -- NIR observations are designed to get $\sigma_M=0.08$~mag.  These SNe will be more sensitive probes of velocity
+than those with only ZTF2 photometry.
+\end{itemize}
+\end{itemize}
+The active SN spectrophotometric and NIR follow-up provide significant distances estimates over
+what ZTF2 photometry can do alone.
+
+
+
+
+ZTF2 will have public, private collaboration, and CalTech surveys.    In ZTF,
+the private time was used to survey in the $i$-band (supplementing the $g$ and $r$-bands of the public survey), that turns out to be useful in transient classification and SN~Ia distance determination.
+Nevertheless, we should monitor whether the public data is sufficient for our needs.  It could be that we do not need to buy into ZTF2 in order to have
+a ZTF2-discovery peculiar velocity survey.  (Input from current ZTF folks should be solicited.)
+
+\subsection{Long Term: LSST +}
+The DESC SN~Ia Working Group is interested in peculiar velocity science.  There is an official peculiar-velocity project.  A peculiar-velocity
+metric was included in the DESC response to the Project call for white papers on observing strategies.
+Informal meetings have been held by DESC members.
+
+\subsection{A New Project}
+The scope of ZTF2 and the coordination of follow-up of LSST discoveries extend beyond the confines
+of current DOE projects.  The recommendations
+of the  Small Projects Portfolio  by the  Cosmic Visions Dark Energy Working Group
+provides an path by which LBL could lead an international collaboration,
+supported by the Office of Science, in the study of Peculiar Velocities.
+
+The new peculiar velocity project would focus on two topics: the use of DESI (and future spectroscopic surveys
+such as DESI2) for measuring distances of
+fundamental plane galaxies; the mobilization of follow-up resources and data management that are required or enhance 
+the probative power of transient discoveries by ZTF2/LSST.  Ideas being discussed for the latter include
+refurbishment and use of the
+UH-88 + SNIFS, DESI, 4MOST, a proposed French spectrograph mounted at ESO,
+a network of identical spectrographs (e.g.\ the DESI design) distributed around the world.
+There is expressed interest from South Africa and Australia in using their resources for peculiar-velocity follow-up observations.
+
+LBL, through the project, would support a broad community interested in peculiar velocities. 
+There are interested groups at the  University of Hawaii, the University of Michigan, the University of Pittsburgh, the University of Rochester, Yale University,  Brookhaven National Laboratory,
+the Carnegie Observatories, several IN2P3 labs, Humboldt University, the University of Toronto,  the University of Queensland, African Institute for Mathematical
+Sciences.
