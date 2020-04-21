@@ -600,7 +600,9 @@ def kintegral_fast(z,zmax,ng,duration,sigm,restrate,kmax=0.1,GW=False):
 
 # utility numbers
 zmax_zint = 0.3
-zs_zint = numpy.arange(0.001,0.3+0.00001,0.001) # in redshift space
+#zs_zint = numpy.arange(0.001,0.3+0.00001,0.001) # in redshift space
+zs_zint = numpy.arange(-3,numpy.log10(zmax_zint)+0.001,(numpy.log10(zmax_zint)+3)/40)
+zs_zint = 10**zs_zint
 rs_zint = cosmo.comoving_distance(zs_zint).value
 
 def zintegral(zmax,ng,duration,sigm,restrate):
