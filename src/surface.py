@@ -23,14 +23,14 @@ if mpi:
     from joblib import Parallel, delayed
     njobs = 40
 
-skyfrac=1. 
-# Perhaps skyfrac should be ~0.8 because we may not be able to see counterparts behind the plane
+skyfrac=0.9 
+# Perhaps skyfrac should be ~0.9 because we may not be able to see counterparts behind the plane
 zmax=0.3
 skyarea = skyfrac*4*numpy.pi
-restrate_BNS = 2810/1e9  # 350/1e9 # Mpc^-3 yr^-1  Optimistic, lower bound 250 after 190425
+restrate_BNS = 1090/1e9/(0.679)**3  # best estimate from GW190425 in h=1 units, 90% limits are 2080- 350/1e9 # Mpc^-3 yr^-1  
 #Decide if you want to get results for different zmax or durations
-do_zmax_matrix=False
-do_duration_matrix=True
+do_zmax_matrix=True
+do_duration_matrix=False
 
 def N_yr(zmax,restrate):
     OmegaM0 = 0.28
