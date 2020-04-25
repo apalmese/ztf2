@@ -10,6 +10,8 @@ import astropy
 matplotlib.rcParams['font.size'] = 14
 matplotlib.rcParams['lines.linewidth'] = 2.0
 
+gsurvey=True
+
 # cosmology
 OmegaM0 = 0.30
 cosmo = FlatLambdaCDM(H0=100, Om0=OmegaM0)
@@ -221,7 +223,11 @@ def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False):
 
     sigv2 = sigv**2
     nvinv = sigv2/n
-    ninv = 1./n
+
+    if gsurvey:
+        ninv = 1./ng
+    else:
+        ninv = 1./n
 
     # nginv = 1./ng
 
@@ -282,7 +288,7 @@ def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False):
         dCdw0.append(numpy.array([[pgg_w0,pgv_w0],[pgv_w0,pvv_w0]]))
         dCdwa.append(numpy.array([[pgg_wa,pgv_wa],[pgv_wa,pvv_wa]]))
 
-        den = (pgg+ninv)*(pvv+nvinv)-pgv**2
+        # den = (pgg+ninv)*(pvv+nvinv)-pgv**2
         # Cinvs.append(1./den * numpy.array([[1,0],[0,0]]) - (pgg+nginv)/den**2 * numpy.array([[pvv+nvinv,-pgv],[-pgv,pgg+nginv]]))
         # Cinvs[-1]=-Cinvs[-1]*sigv**2/restrate/duration**2 #in terms of lnt not s = sigma^2/rate/s
 
@@ -600,9 +606,7 @@ def kintegral_fast(z,zmax,ng,duration,sigm,restrate,kmax=0.1,GW=False):
 
 # utility numbers
 zmax_zint = 0.3
-#zs_zint = numpy.arange(0.001,0.3+0.00001,0.001) # in redshift space
-zs_zint = numpy.arange(-3,numpy.log10(zmax_zint)+0.001,(numpy.log10(zmax_zint)+3)/40)
-zs_zint = 10**zs_zint
+zs_zint = numpy.arange(0.001,0.3+0.00001,0.001) # in redshift space
 rs_zint = cosmo.comoving_distance(zs_zint).value
 
 def zintegral(zmax,ng,duration,sigm,restrate):
