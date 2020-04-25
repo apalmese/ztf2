@@ -10,6 +10,7 @@ import astropy
 matplotlib.rcParams['font.size'] = 14
 matplotlib.rcParams['lines.linewidth'] = 2.0
 
+
 # cosmology
 OmegaM0 = 0.30
 cosmo = FlatLambdaCDM(H0=100, Om0=OmegaM0)
@@ -41,8 +42,8 @@ sigm0_SN = 0.08
 skyfrac_SN=0.5
 
 
-# galaxy density (TAIPAN Howlett et al.)
-ng = 1e-3 # not used in current code
+# galaxy density (Branchin 1999 & TAIPAN Howlett et al.)
+ng = 0.0016 #1e-3 
 
 def Cinverse(m00,m11,m01):
     return numpy.array([[m11,-m01],[-m01,m00]])/(m00*m11 - m01**2)
@@ -128,7 +129,7 @@ def finvp(f00,f11,f01,f00p,f11p,f01p):
     return f11p /den - f11*(f00p*f11 + f00*f11p - 2*f01*f01p)/den**2
 
 #AP added an extra flag to say whethere you want SN or GW. GW==False means SN
-def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False):
+def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False,gsurvey=False):
     zbin = numpy.argmin(abs(bincenters-z))
     a = 1/(1.+z)
     # OmegaM_a = OmegaM(a)
@@ -160,7 +161,11 @@ def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False):
 
     sigv2 = sigv**2
     nvinv = sigv2/n
-    ninv = 1./n
+
+    if gsurvey:
+        ninv = 1./ng
+    else:
+        ninv = 1./n
 
     # nginv = 1./ng
 
@@ -282,7 +287,7 @@ def muintegral_fast(z,ng,duration,sigm,restrate):
     return 2*x1x1,2*x1x2,2*x1x3,2*x1O,2*x2x2,2*x2x3,2*x2O,2*x3x3,2*x3O,2*OO
 
 
-def kintegral_fast(z,zmax,ng,duration,sigm,restrate):
+def kintegral_fast(z,zmax,ng,duration,sigm,restrate,GW=False,gsurvey=False):
     kmin = numpy.pi/(zmax*3e3)
     kmax = 0.1
     w = numpy.logical_and(matter[:,0] >= kmin, matter[:,0]< kmax)
@@ -309,7 +314,7 @@ rs_zint = cosmo.comoving_distance(zs_zint).value
 
 
 
-def zintegral_fast(zmax,ng,duration,sigm,restrate,GW=False):
+def zintegral_fast(zmax,ng,duration,sigm,restrate,GW=False,gsurvey=False):
     w = zs_zint <= zmax
     zs = zs_zint[w]
     rs = rs_zint[w]
@@ -326,7 +331,7 @@ def zintegral_fast(zmax,ng,duration,sigm,restrate,GW=False):
     OO=numpy.zeros(len(rs))
 
     for i in range(len(rs)):
-        x1x1[i],x1x2[i],x1x3[i],x1O[i],x2x2[i],x2x3[i],x2O[i],x3x3[i],x3O[i],OO[i] = kintegral_fast(zs[i],zmax,ng,duration,sigm,restrate)
+        x1x1[i],x1x2[i],x1x3[i],x1O[i],x2x2[i],x2x3[i],x2O[i],x3x3[i],x3O[i],OO[i] = kintegral_fast(zs[i],zmax,ng,duration,sigm,restrate,GW=GW,gsurvey=gsurvey)
 
     x1x1 = numpy.trapz(rs**2*x1x1,rs)
     x1x2 = numpy.trapz(rs**2*x1x2,rs)
@@ -360,7 +365,7 @@ def bD(z):
     return bD_[numpy.argmin(abs(bincenters-z))]    
 
 
-def set1(useGW=True):
+def set1(useGW=True,gsurvey=False):
     # fig,(ax) = plt.subplots(1, 1)
     zmaxs = [0.3]
     durations = [10.]
@@ -389,7 +394,7 @@ def set1(useGW=True):
         dvsigM_=[]
         dvdkmax_=[]
         for zmax in zmaxs:
-            x1x1,x1x2,x1x3,x1O,x2x2,x2x3,x2O,x3x3,x3O,OO = zintegral_fast(zmax,ng,duration,sigm0,restrate,GW=useGW)
+            x1x1,x1x2,x1x3,x1O,x2x2,x2x3,x2O,x3x3,x3O,OO = zintegral_fast(zmax,ng,duration,sigm0,restrate,GW=useGW, gsurvey=gsurvey)
             v_.append(numpy.linalg.inv(numpy.array([[x1x1,x1x2,x1x3,x1O],[x1x2,x2x2,x2x3,x2O],[x1x3,x2x3,x3x3,x3O],
                 [x1O,x2O,x3O,OO]])))
         var.append(numpy.array(v_)*2*3.14*skyfrac) #2/4 sky
