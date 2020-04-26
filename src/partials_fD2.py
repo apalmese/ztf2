@@ -154,7 +154,7 @@ def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False,gsurvey=False):
     # print (term)
     # print (1/term)
     sigv_factor=1/term
-    sigv = 3e5*sigm0*sigv_factor
+    sigv = 3e5*sigm*sigv_factor
     sigv = numpy.sqrt(sigv**2+sigma_v**2)
 
     # lnfgfactor = dlnfs8dg(a)
@@ -225,9 +225,9 @@ def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False,gsurvey=False):
 
 
 
-def traces_fast(z,mu,ng,duration,sigm,restrate):
+def traces_fast(z,mu,ng,duration,sigm,restrate,GW=False):
 
-    cmatrices = Cmatrices(z,mu,ng,duration,sigm,restrate)
+    cmatrices = Cmatrices(z,mu,ng,duration,sigm,restrate,GW)
 
     X1X1=[]
     X1X2=[]
@@ -254,7 +254,7 @@ def traces_fast(z,mu,ng,duration,sigm,restrate):
 
     return numpy.array(X1X1),numpy.array(X1X2),numpy.array(X1X3),numpy.array(X1O),numpy.array(X2X2),numpy.array(X2X3),numpy.array(X2O),numpy.array(X3X3),numpy.array(X3O),numpy.array(OO)
 
-def muintegral_fast(z,ng,duration,sigm,restrate):
+def muintegral_fast(z,ng,duration,sigm,restrate,GW=False):
     mus=numpy.arange(0,1.001,0.05)
 
     x1x1=numpy.zeros((len(mus),len(matter[:,0])))
@@ -270,7 +270,7 @@ def muintegral_fast(z,ng,duration,sigm,restrate):
 
     for i in range(len(mus)):
         # dum = traces_fast(z,mus[i],ng,duration,sigm,restrate)
-        x1x1[i],x1x2[i],x1x3[i],x1O[i],x2x2[i],x2x3[i],x2O[i],x3x3[i],x3O[i],OO[i]= traces_fast(z,mus[i],ng,duration,sigm,restrate)
+        x1x1[i],x1x2[i],x1x3[i],x1O[i],x2x2[i],x2x3[i],x2O[i],x3x3[i],x3O[i],OO[i]= traces_fast(z,mus[i],ng,duration,sigm,restrate,GW)
 
     x1x1=numpy.trapz(x1x1,mus,axis=0)
     x1x2=numpy.trapz(x1x2,mus,axis=0)
@@ -292,7 +292,7 @@ def kintegral_fast(z,zmax,ng,duration,sigm,restrate,GW=False,gsurvey=False):
     kmax = 0.1
     w = numpy.logical_and(matter[:,0] >= kmin, matter[:,0]< kmax)
 
-    x1x1,x1x2,x1x3,x1O,x2x2,x2x3,x2O,x3x3,x3O,OO = muintegral_fast(z,ng,duration,sigm,restrate)
+    x1x1,x1x2,x1x3,x1O,x2x2,x2x3,x2O,x3x3,x3O,OO = muintegral_fast(z,ng,duration,sigm,restrate,GW)
     x1x1 = numpy.trapz(matter[:,0][w]**2*x1x1[w],matter[:,0][w])
     x1x2 = numpy.trapz(matter[:,0][w]**2*x1x2[w],matter[:,0][w])
     x1x3 = numpy.trapz(matter[:,0][w]**2*x1x3[w],matter[:,0][w])
@@ -397,7 +397,7 @@ def set1(useGW=True,gsurvey=False):
             x1x1,x1x2,x1x3,x1O,x2x2,x2x3,x2O,x3x3,x3O,OO = zintegral_fast(zmax,ng,duration,sigm0,restrate,GW=useGW, gsurvey=gsurvey)
             v_.append(numpy.linalg.inv(numpy.array([[x1x1,x1x2,x1x3,x1O],[x1x2,x2x2,x2x3,x2O],[x1x3,x2x3,x3x3,x3O],
                 [x1O,x2O,x3O,OO]])))
-        var.append(numpy.array(v_)*2*3.14*skyfrac) #2/4 sky
+        var.append(numpy.array(v_)*2*3.14/skyfrac) #2/4 sky
         print(var[-1])
     print(bincenters,fD_)
     return var[-1], bincenters,fD_
