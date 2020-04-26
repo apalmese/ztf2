@@ -147,6 +147,9 @@ def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False,gsurvey=False):
         #sigm = sigm0*(d/d0)**2
         #But if it's fractional errors we deal with, then it's like this
         sigm = sigm0*d/d0
+        #Testing a floor for GWs!
+        #if (sigm<0.01):
+        #    sigma=0.01
         term = numpy.abs(1-1/effz)
     else:
         sigm=sigm0
@@ -225,9 +228,9 @@ def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False,gsurvey=False):
 
 
 
-def traces_fast(z,mu,ng,duration,sigm,restrate,GW=False):
+def traces_fast(z,mu,ng,duration,sigm,restrate,GW=False,gsurvey=False):
 
-    cmatrices = Cmatrices(z,mu,ng,duration,sigm,restrate,GW)
+    cmatrices = Cmatrices(z,mu,ng,duration,sigm,restrate,GW,gsurvey)
 
     X1X1=[]
     X1X2=[]
@@ -254,7 +257,7 @@ def traces_fast(z,mu,ng,duration,sigm,restrate,GW=False):
 
     return numpy.array(X1X1),numpy.array(X1X2),numpy.array(X1X3),numpy.array(X1O),numpy.array(X2X2),numpy.array(X2X3),numpy.array(X2O),numpy.array(X3X3),numpy.array(X3O),numpy.array(OO)
 
-def muintegral_fast(z,ng,duration,sigm,restrate,GW=False):
+def muintegral_fast(z,ng,duration,sigm,restrate,GW=False,gsurvey=False):
     mus=numpy.arange(0,1.001,0.05)
 
     x1x1=numpy.zeros((len(mus),len(matter[:,0])))
@@ -270,7 +273,7 @@ def muintegral_fast(z,ng,duration,sigm,restrate,GW=False):
 
     for i in range(len(mus)):
         # dum = traces_fast(z,mus[i],ng,duration,sigm,restrate)
-        x1x1[i],x1x2[i],x1x3[i],x1O[i],x2x2[i],x2x3[i],x2O[i],x3x3[i],x3O[i],OO[i]= traces_fast(z,mus[i],ng,duration,sigm,restrate,GW)
+        x1x1[i],x1x2[i],x1x3[i],x1O[i],x2x2[i],x2x3[i],x2O[i],x3x3[i],x3O[i],OO[i]= traces_fast(z,mus[i],ng,duration,sigm,restrate,GW,gsurvey)
 
     x1x1=numpy.trapz(x1x1,mus,axis=0)
     x1x2=numpy.trapz(x1x2,mus,axis=0)
@@ -292,7 +295,7 @@ def kintegral_fast(z,zmax,ng,duration,sigm,restrate,GW=False,gsurvey=False):
     kmax = 0.1
     w = numpy.logical_and(matter[:,0] >= kmin, matter[:,0]< kmax)
 
-    x1x1,x1x2,x1x3,x1O,x2x2,x2x3,x2O,x3x3,x3O,OO = muintegral_fast(z,ng,duration,sigm,restrate,GW)
+    x1x1,x1x2,x1x3,x1O,x2x2,x2x3,x2O,x3x3,x3O,OO = muintegral_fast(z,ng,duration,sigm,restrate,GW,gsurvey)
     x1x1 = numpy.trapz(matter[:,0][w]**2*x1x1[w],matter[:,0][w])
     x1x2 = numpy.trapz(matter[:,0][w]**2*x1x2[w],matter[:,0][w])
     x1x3 = numpy.trapz(matter[:,0][w]**2*x1x3[w],matter[:,0][w])
@@ -368,7 +371,7 @@ def bD(z):
 def set1(useGW=True,gsurvey=False):
     # fig,(ax) = plt.subplots(1, 1)
     zmaxs = [0.3]
-    durations = [10.]
+    durations = [5.]
     labels = ['Two Years','Ten Years']
 
     if useGW:
