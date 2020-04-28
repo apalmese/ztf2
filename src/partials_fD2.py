@@ -37,13 +37,13 @@ sigm0_GW = 0.01 #precision at z0
 z0=0.1
 skyfrac_GW=0.9
 
-restrate_SN = 0.65*  2.69e-5*(1/0.70)**3 # h^3/Mpc^3 yr^{-1}
+restrate_SN = 0.65* 2.69e-5*(1/0.70)**3 # h^3/Mpc^3 yr^{-1}
 sigm0_SN = 0.08
 skyfrac_SN=0.5
 
 
 # galaxy density (Branchin 1999 & TAIPAN Howlett et al.)
-ng = 0.0016 #1e-3 
+ng = 1e-3  # Branchini 0.0016 #1e-3
 
 def Cinverse(m00,m11,m01):
     return numpy.array([[m11,-m01],[-m01,m00]])/(m00*m11 - m01**2)
@@ -311,7 +311,9 @@ def kintegral_fast(z,zmax,ng,duration,sigm,restrate,GW=False,gsurvey=False):
 
 # utility numbers
 zmax_zint = 0.3
-zs_zint = numpy.arange(0.01,0.3+0.00001,0.01) # in redshift space
+#zs_zint = numpy.arange(0.01,0.3+0.00001,0.01) # in redshift space
+zs_zint = numpy.arange(-3,numpy.log10(zmax_zint)+0.001,(numpy.log10(zmax_zint)+3)/40)
+zs_zint = 10**zs_zint
 rs_zint = cosmo.comoving_distance(zs_zint).value
 
 
