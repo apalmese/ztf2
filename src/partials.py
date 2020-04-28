@@ -203,7 +203,7 @@ def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False,gsurvey=False):
     #AP adding z dependance of d uncertainty for GWs
     #sigm here becomes just the normalization at z0
     if GW:
-        z0=0.05
+        z0=0.1
         d = cosmo.luminosity_distance(z)
         d0 = cosmo.luminosity_distance(z0)
         #GW uncertainty goes like d^2
