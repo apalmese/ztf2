@@ -10,7 +10,7 @@ import astropy
 matplotlib.rcParams['font.size'] = 14
 matplotlib.rcParams['lines.linewidth'] = 2.0
 
-gsurvey=True
+
 
 # cosmology
 OmegaM0 = 0.30
@@ -191,7 +191,7 @@ def finvp3d(f00,f01,f02,f11,f12,f22,f00p,f01p,f02p,f11p,f12p,f22p):
 
 
 #AP added an extra flag to say whethere you want SN or GW. GW==False means SN
-def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False):
+def Cmatrices(z,mu,ng,duration,sigm0,restrate,GW=False,gsurvey=False):
     a = 1/(1.+z)
     OmegaM_a = OmegaM(a)
     n = duration*restrate/(1+z)
@@ -383,9 +383,9 @@ def traces(z,mu,ng,duration,sigm,restrate,GW):
         numpy.array(lO_ind),numpy.array(bO_ind),numpy.array(OO_ind),numpy.array(lOsigM),numpy.array(bOsigM),numpy.array(OOsigM), \
         numpy.array(lO_vonly), numpy.array(OO_vonly)
 
-def traces_fast(z,mu,ng,duration,sigm,restrate,GW):
+def traces_fast(z,mu,ng,duration,sigm,restrate,GW=False,gsurvey=False):
 
-    cmatrices = Cmatrices(z,mu,ng,duration,sigm,restrate,GW)
+    cmatrices = Cmatrices(z,mu,ng,duration,sigm,restrate,GW,gsurvey)
 
     ll=[]
     lb=[]
@@ -497,7 +497,7 @@ def muintegral(z,ng,duration,sigm,restrate):
     return 2*ll,2*bb,2*bl, 2*lls,2*bbs,2*bls,2*ll_ind,2*bb_ind,2*bl_ind, 2*llsigM,2*bbsigM,2*blsigM,2*ll_vonly, 2*lO, 2*bO, 2*OO, \
         2*lOs,2*bOs,2*OOs,2*lO_ind,2*bO_ind,2*OO_ind, 2*lOsigM,2*bOsigM,2*OOsigM, 2*lO_vonly,2*OO_vonly
 
-def muintegral_fast(z,ng,duration,sigm,restrate,GW):
+def muintegral_fast(z,ng,duration,sigm,restrate,GW=False,gsurvey=False):
     mus=numpy.arange(0,1.001,0.05)
 
     ll=numpy.zeros((len(mus),len(matter[:,0])))
@@ -518,7 +518,7 @@ def muintegral_fast(z,ng,duration,sigm,restrate,GW):
 
     for i in range(len(mus)):
         # dum = traces_fast(z,mus[i],ng,duration,sigm,restrate)
-        ll[i],bb[i],bl[i], lO[i],bO[i],OO[i],lw0[i],lwa[i],bw0[i],bwa[i],Ow0[i],Owa[i],w0w0[i],w0wa[i],wawa[i] = traces_fast(z,mus[i],ng,duration,sigm,restrate,GW)
+        ll[i],bb[i],bl[i], lO[i],bO[i],OO[i],lw0[i],lwa[i],bw0[i],bwa[i],Ow0[i],Owa[i],w0w0[i],w0wa[i],wawa[i] = traces_fast(z,mus[i],ng,duration,sigm,restrate,GW,gsurvey)
 
     ll = numpy.trapz(ll,mus,axis=0)
     bb = numpy.trapz(bb,mus,axis=0)
@@ -579,12 +579,12 @@ def kintegral(z,zmax,ng,duration,sigm,restrate):
     return ll,bb,bl, lls,bbs,bls,ll_ind,bb_ind,bl_ind, llsigM,bbsigM,blsigM,ll_vonly,lO,bO,OO, \
         lOs,bOs,OOs,lO_ind,bO_ind,OO_ind, lOsigM,bOsigM,OOsigM,lO_vonly, OO_vonly
 
-def kintegral_fast(z,zmax,ng,duration,sigm,restrate,kmax=0.1,GW=False):
+def kintegral_fast(z,zmax,ng,duration,sigm,restrate,kmax=0.1,GW=False,gsurvey=False):
     kmin = numpy.pi/(zmax*3e3)
 
     w = numpy.logical_and(matter[:,0] >= kmin, matter[:,0]< kmax)
 
-    ll,bb,bl,lO,bO,OO,lw0,lwa,bw0,bwa,Ow0,Owa,w0w0,w0wa,wawa = muintegral_fast(z,ng,duration,sigm,restrate,GW)
+    ll,bb,bl,lO,bO,OO,lw0,lwa,bw0,bwa,Ow0,Owa,w0w0,w0wa,wawa = muintegral_fast(z,ng,duration,sigm,restrate,GW,gsurvey)
     ll = numpy.trapz(matter[:,0][w]**2*ll[w],matter[:,0][w])
     bb = numpy.trapz(matter[:,0][w]**2*bb[w],matter[:,0][w])
     bl = numpy.trapz(matter[:,0][w]**2*bl[w],matter[:,0][w])
@@ -690,7 +690,7 @@ def zintegral(zmax,ng,duration,sigm,restrate):
         lOs,bOs,OOs,lO_ind, bO_ind, OO_ind, lOsigM,bOsigM,OOsigM,lO_vonly,OO_vonly
 
 
-def zintegral_fast(zmax,ng,duration,sigm,restrate,kmax=0.1,GW=False):
+def zintegral_fast(zmax,ng,duration,sigm,restrate,kmax=0.1,GW=False,gsurvey=False):
     w = zs_zint <= zmax
     zs = zs_zint[w]
     rs = rs_zint[w]
@@ -712,7 +712,7 @@ def zintegral_fast(zmax,ng,duration,sigm,restrate,kmax=0.1,GW=False):
     wawa=numpy.zeros(len(rs))
 
     for i in range(len(rs)):
-        ll[i],bb[i],bl[i],lO[i],bO[i],OO[i],lw0[i],lwa[i],bw0[i],bwa[i],Ow0[i],Owa[i],w0w0[i],w0wa[i],wawa[i] = kintegral_fast(zs[i],zmax,ng,duration,sigm,restrate,kmax=kmax,GW=GW)
+        ll[i],bb[i],bl[i],lO[i],bO[i],OO[i],lw0[i],lwa[i],bw0[i],bwa[i],Ow0[i],Owa[i],w0w0[i],w0wa[i],wawa[i] = kintegral_fast(zs[i],zmax,ng,duration,sigm,restrate,kmax=kmax,GW=GW,gsurvey=gsurvey)
 
     ll = numpy.trapz(rs**2*ll,rs)
     bb = numpy.trapz(rs**2*bb,rs)

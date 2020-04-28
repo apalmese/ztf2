@@ -31,6 +31,9 @@ restrate_BNS = 1090/1e9/(0.679)**3  # best estimate from GW190425 in h=1 units, 
 #Decide if you want to get results for different zmax or durations
 do_zmax_matrix=True
 do_duration_matrix=False
+#Want to use the galaxis in the overdensity power spectrum?
+gsurvey=True
+
 
 def N_yr(zmax,restrate):
     OmegaM0 = 0.28
@@ -49,27 +52,27 @@ X, Y = numpy.meshgrid(numpy.log10(durations*skyarea/4/numpy.pi*N_yr(zmax,restrat
 
 var =[]
 
-def fisher(zmax,duration,sigm,restrate,sigOM0sqinv,GW=True):
+def fisher(zmax,duration,sigm,restrate,sigOM0sqinv,GW=True,gsurvey=gsurvey):
     print("Computing Fisher for ", duration," years, sigm=", sigm)
-    f00,f11,f10, f02,f12,f22,lw0,lwa,bw0,bwa,Ow0,Owa,w0w0,w0wa,wawa = zintegral_fast(zmax,None,duration,sigm,restrate,GW=GW)
+    f00,f11,f10, f02,f12,f22,lw0,lwa,bw0,bwa,Ow0,Owa,w0w0,w0wa,wawa = zintegral_fast(zmax,None,duration,sigm,restrate,GW=GW,gsurvey=gsurvey)
     return numpy.linalg.inv(numpy.array([[f00,f10,f02],[f10,f11,f12],[f02,f12,f22+sigOM0sqinv]]))[0,0]
 
 for sigm_GW in sigm_GWs:
     if mpi:
-        if (do_duration_matrix): v_ = Parallel(n_jobs=njobs)(delayed(fisher)(zmax,duration,sigm_GW,restrate_BNS,sigOM0sqinv,GW=True) for duration in durations)
+        if (do_duration_matrix): v_ = Parallel(n_jobs=njobs)(delayed(fisher)(zmax,duration,sigm_GW,restrate_BNS,sigOM0sqinv,GW=True,gsurvey=gsurvey) for duration in durations)
         if (do_zmax_matrix): 
             duration=5.
-            v_ = Parallel(n_jobs=njobs)(delayed(fisher)(zmax,duration,sigm_GW,restrate_BNS,sigOM0sqinv, GW=True) for zmax in zmaxs)       
+            v_ = Parallel(n_jobs=njobs)(delayed(fisher)(zmax,duration,sigm_GW,restrate_BNS,sigOM0sqinv, GW=True,gsurvey=gsurvey) for zmax in zmaxs)
     else:
         v_ = []
         for duration in durations:
-            f00,f11,f10, f02,f12,f22,lw0,lwa,bw0,bwa,Ow0,Owa,w0w0,w0wa,wawa = zintegral_fast(zmax,None,duration,sigm_GW,restrate_BNS,GW=True)
+            f00,f11,f10, f02,f12,f22,lw0,lwa,bw0,bwa,Ow0,Owa,w0w0,w0wa,wawa = zintegral_fast(zmax,None,duration,sigm_GW,restrate_BNS,GW=True,gsurvey=gsurvey)
             v_.append(numpy.linalg.inv(numpy.array([[f00,f10,f02],[f10,f11,f12],[f02,f12,f22+sigOM0sqinv]]))[0,0])
 
     var.append(numpy.array(v_)*2*3.14/skyfrac)
     
-if (do_duration_matrix): numpy.savetxt('fisher_duration_newsigmad_out_moreduration.csv',var,delimiter=",")
-if (do_zmax_matrix): numpy.savetxt('fisher_zmax_newsigmad_out.csv',var,delimiter=",")
+if (do_duration_matrix): numpy.savetxt('fisher_duration_gsurvey.csv',var,delimiter=",")
+if (do_zmax_matrix): numpy.savetxt('fisher_zmax_gsurvey.csv',var,delimiter=",")
 
 # Sample variance limit
 #AP I think parameters here need to be changed....but do we need them at all for the plots we want?
